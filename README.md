@@ -45,21 +45,19 @@ Den groben Aufbau habe ich selber programmiert, z.B. die Komponentenstruktur und
 
 <summary>Hier ein paar prompts</summary>
 
-`
-Write a Code Snippet Manager:
+> Write a Code Snippet Manager:
+> Projekt 12: Code-Snippet Manager
+> Ziel: Verwaltung für häufig genutzte Code-Schnipsel (Titel, Sprache, Code).
+> Pflicht: Suchfunktion (Filter), um ein Snippet anhand des Titels schnell zu finden.
+> Tech-Fokus: Listen-Filterung, CRUD (Create, Read), UI-Design.
+> See the demo pages in [@demo](file:///home/jan/projects/code-snippet/src/routes/demo) . Use simple/sleek/professional design.
 
-Projekt 12: Code-Snippet Manager
-Ziel: Verwaltung für häufig genutzte Code-Schnipsel (Titel, Sprache, Code).
-Pflicht: Suchfunktion (Filter), um ein Snippet anhand des Titels schnell zu finden.
-Tech-Fokus: Listen-Filterung, CRUD (Create, Read), UI-Design.
+> Design a code snippet manager. Use a matrix style interface, no big navbar with logo. just usability. Use dark theme. Here are some guidelines:
+> Projekt 12: Code-Snippet Manager
+> Ziel: Verwaltung für häufig genutzte Code-Schnipsel (Titel, Sprache, Code).
+> Pflicht: Suchfunktion (Filter), um ein Snippet anhand des Titels schnell zu finden.
+> Tech-Fokus: Listen-Filterung, CRUD (Create, Read), UI-Design.\*
 
-See the demo pages in [@demo](file:///home/jan/projects/code-snippet/src/routes/demo) . Use simple/sleek/professional design.
-`
-
-`Design a code snippet manager. Use a matrix style interface, no big navbar with logo. just usability. Use dark theme. Here are some guidelines:
-Projekt 12: Code-Snippet Manager
-Ziel: Verwaltung für häufig genutzte Code-Schnipsel (Titel, Sprache, Code).
-Pflicht: Suchfunktion (Filter), um ein Snippet anhand des Titels schnell zu finden.
-Tech-Fokus: Listen-Filterung, CRUD (Create, Read), UI-Design.`
+_Es folgten mehrere Iterationen, um das Design zu verfeinern._
 
 </details>
