@@ -1,0 +1,23 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" fill="#0D0208"/>
+  <path d="M8 8H10V10H8V8Z" fill="#00FF41"/>
+  <path d="M12 8H14V10H12V8Z" fill="#00FF41"/>
+  <path d="M16 8H18V10H16V8Z" fill="#00FF41"/>
+  <path d="M20 8H22V10H20V8Z" fill="#00FF41"/>
+
+  <path d="M8 12H10V14H8V12Z" fill="#00FF41" opacity="0.8"/>
+  <path d="M20 12H22V14H20V12Z" fill="#00FF41" opacity="0.8"/>
+
+  <path d="M8 16H10V18H8V16Z" fill="#00FF41" opacity="0.6"/>
+  <path d="M12 16H14V18H12V16Z" fill="#00FF41" opacity="0.6"/>
+  <path d="M16 16H18V18H16V16Z" fill="#00FF41" opacity="0.6"/>
+  <path d="M20 16H22V18H20V16Z" fill="#00FF41" opacity="0.6"/>
+
+  <path d="M8 20H10V22H8V20Z" fill="#00FF41" opacity="0.4"/>
+  <path d="M20 20H22V22H20V20Z" fill="#00FF41" opacity="0.4"/>
+
+  <path d="M8 24H10V26H8V24Z" fill="#00FF41" opacity="0.2"/>
+  <path d="M12 24H14V26H12V24Z" fill="#00FF41" opacity="0.2"/>
+  <path d="M16 24H18V26H16V24Z" fill="#00FF41" opacity="0.2"/>
+  <path d="M20 24H22V26H20V24Z" fill="#00FF41" opacity="0.2"/>
+</svg>

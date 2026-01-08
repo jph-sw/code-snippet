@@ -1,118 +1,192 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {
-  Route as RouteIcon,
-  Server,
-  Shield,
-  Sparkles,
-  Waves,
-  Zap,
+  Activity,
+  Filter,
+  Plus,
+  Search,
+  ShieldCheck,
+  Terminal,
 } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import type { ProgrammingLanguage } from '@/lib/types'
+import { SnippetCard } from '@/components/snippet-card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Modal } from '@/components/ui/modal'
+import { SnippetForm } from '@/components/snippet-form'
+import { useSnippets } from '@/hooks/use-snippets'
+
+const LANGUAGE_FILTERS = [
+  'all',
+  'javascript',
+  'typescript',
+  'python',
+  'html',
+  'rust',
+  'go',
+  'sql',
+] as const
 
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
-  const features = [
-    {
-      icon: <Zap className="w-12 h-12 text-cyan-400" />,
-      title: 'Powerful Server Functions',
-      description:
-        'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
-    },
-    {
-      icon: <Server className="w-12 h-12 text-cyan-400" />,
-      title: 'Flexible Server Side Rendering',
-      description:
-        'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
-    },
-    {
-      icon: <RouteIcon className="w-12 h-12 text-cyan-400" />,
-      title: 'API Routes',
-      description:
-        'Build type-safe API endpoints alongside your application. No separate backend needed.',
-    },
-    {
-      icon: <Shield className="w-12 h-12 text-cyan-400" />,
-      title: 'Strongly Typed Everything',
-      description:
-        'End-to-end type safety from server to client. Catch errors before they reach production.',
-    },
-    {
-      icon: <Waves className="w-12 h-12 text-cyan-400" />,
-      title: 'Full Streaming Support',
-      description:
-        'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
-    },
-    {
-      icon: <Sparkles className="w-12 h-12 text-cyan-400" />,
-      title: 'Next Generation Ready',
-      description:
-        'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
-    },
-  ]
+  const {
+    snippets,
+    addSnippet,
+    deleteSnippet,
+    editSnippet,
+    getFilteredSnippets,
+  } = useSnippets()
+
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedLang, setSelectedLang] = useState<ProgrammingLanguage | 'all'>(
+    'all',
+  )
+  const [showAddForm, setShowAddForm] = useState(false)
+  const [newSnippet, setNewSnippet] = useState({
+    title: '',
+    language: 'javascript' as ProgrammingLanguage,
+    code: '',
+    description: '',
+  })
+
+  const filteredSnippets = useMemo(
+    () => getFilteredSnippets(searchTerm, selectedLang),
+    [getFilteredSnippets, searchTerm, selectedLang],
+  )
+
+  const handleSubmitNewSnippet = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (newSnippet.title.trim() && newSnippet.code.trim()) {
+      addSnippet(newSnippet)
+      setNewSnippet({
+        title: '',
+        language: 'javascript',
+        code: '',
+        description: '',
+      })
+      setShowAddForm(false)
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <section className="relative py-20 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10"></div>
-        <div className="relative max-w-5xl mx-auto">
-          <div className="flex items-center justify-center gap-6 mb-6">
-            <img
-              src="/tanstack-circle-logo.png"
-              alt="TanStack Logo"
-              className="w-24 h-24 md:w-32 md:h-32"
-            />
-            <h1 className="text-6xl md:text-7xl font-black text-white [letter-spacing:-0.08em]">
-              <span className="text-gray-300">TANSTACK</span>{' '}
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                START
-              </span>
-            </h1>
-          </div>
-          <p className="text-2xl md:text-3xl text-gray-300 mb-4 font-light">
-            The framework for next generation AI applications
-          </p>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
-            Full-stack framework powered by TanStack Router for React and Solid.
-            Build modern applications with server functions, streaming, and type
-            safety.
-          </p>
-          <div className="flex flex-col items-center gap-4">
-            <a
-              href="https://tanstack.com/start"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50"
-            >
-              Documentation
-            </a>
-            <p className="text-gray-400 text-sm mt-2">
-              Begin your TanStack Start journey by editing{' '}
-              <code className="px-2 py-1 bg-slate-700 rounded text-cyan-400">
-                /src/routes/index.tsx
-              </code>
-            </p>
-          </div>
-        </div>
-      </section>
+    <>
+      <Modal
+        isOpen={showAddForm}
+        onClose={() => setShowAddForm(false)}
+        title="NEW_ENTRY_FORM"
+      >
+        <SnippetForm
+          snippet={newSnippet}
+          onSubmit={handleSubmitNewSnippet}
+          onCancel={() => setShowAddForm(false)}
+          onChange={setNewSnippet}
+        />
+      </Modal>
 
-      <section className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
-            >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-3">
-                {feature.title}
+      <div className="flex flex-col h-screen max-h-screen">
+        <header className="flex justify-between items-center px-4 py-2 border-b border-[#00FF41]/30 text-[10px] font-bold bg-black sticky top-0 z-50">
+          <div className="flex items-center gap-4">
+            <span className="matrix-glow flex items-center gap-1">
+              <ShieldCheck size={12} /> VAULT_OS [SECURE_SESSION]
+            </span>
+            <span className="opacity-40">CPU_LOAD: 12%</span>
+            <span className="opacity-40">UPTIME: 99.9%</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-[#00FF41] opacity-70">
+              DATE_{new Date().toLocaleDateString()}
+            </span>
+            <span className="animate-pulse flex items-center gap-1 text-[#00FF41]">
+              <Activity size={12} /> LIVE_SYNC
+            </span>
+          </div>
+        </header>
+
+        <div className="flex flex-1 overflow-hidden">
+          <aside className="w-64 border-r border-[#00FF41]/30 bg-black flex flex-col gap-6 p-4 overflow-y-auto">
+            <section>
+              <Button
+                variant="primary"
+                onClick={() => setShowAddForm(true)}
+                className="w-full mb-4 flex items-center justify-center gap-2"
+              >
+                <Plus size={14} /> NEW_ENTRY
+              </Button>
+              <div className="relative mb-4">
+                <Input
+                  type="text"
+                  placeholder="QUERY_VAULT..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-8"
+                />
+                <Search
+                  className="absolute left-2 top-1/2 -translate-y-1/2 opacity-50"
+                  size={14}
+                />
+              </div>
+            </section>
+
+            <section>
+              <h3 className="text-[10px] font-bold opacity-40 uppercase mb-2 flex items-center gap-1">
+                <Filter size={10} /> Syntax_Filters
               </h3>
-              <p className="text-gray-400 leading-relaxed">
-                {feature.description}
-              </p>
+              <div className="flex flex-col gap-1">
+                {LANGUAGE_FILTERS.map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() =>
+                      setSelectedLang(lang as ProgrammingLanguage | 'all')
+                    }
+                    className={`
+                      text-left px-2 py-1 text-[10px] uppercase transition-colors
+                      ${selectedLang === lang ? 'bg-[#003B00] matrix-glow' : 'opacity-60 hover:opacity-100'}
+                    `}
+                  >
+                    {lang === 'all' ? '> ALL_FILES' : `> ${lang}`}
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            <section className="mt-auto border-t border-[#003B00] pt-4">
+              <h3 className="text-[10px] font-bold opacity-40 uppercase mb-2 italic">
+                System_Logs
+              </h3>
+              <div className="text-[9px] opacity-40 space-y-1 font-mono">
+                <p>[INFO] Database initialized.</p>
+                <p>[INFO] {snippets.length} entries loaded.</p>
+                <p>[INFO] Encryption active.</p>
+              </div>
+            </section>
+          </aside>
+
+          <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-[#0D0208]">
+            <div className="max-w-5xl mx-auto">
+              {filteredSnippets.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-64 border border-dashed border-[#003B00] opacity-40">
+                  <Terminal size={48} />
+                  <p className="mt-4 text-xs font-bold">
+                    NO_RESULTS_RETURNED_FROM_SEARCH
+                  </p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {filteredSnippets.map((snippet) => (
+                    <SnippetCard
+                      key={snippet.id}
+                      snippet={snippet}
+                      onDelete={deleteSnippet}
+                      onEdit={editSnippet}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-          ))}
+          </main>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   )
 }
