@@ -1,0 +1,22 @@
+{
+  "projectName": "code-snippet",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "bun",
+  "addOnOptions": {
+    "drizzle": {
+      "database": "sqlite"
+    }
+  },
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "eslint",
+    "start",
+    "tanstack-query",
+    "shadcn",
+    "drizzle"
+  ]
+}
