@@ -1,5 +1,5 @@
-import {   forwardRef } from 'react'
-import type {ButtonHTMLAttributes, ReactNode} from 'react';
+import { forwardRef } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -35,7 +35,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {children}
       </button>
     )
-  }
+  },
 )
 
 Button.displayName = 'Button'

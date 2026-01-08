@@ -72,7 +72,9 @@ export const SnippetForm = ({
       <FormField label="DESCRIPTION (OPTIONAL)">
         <Textarea
           value={snippet.description}
-          onChange={(e) => onChange({ ...snippet, description: e.target.value })}
+          onChange={(e) =>
+            onChange({ ...snippet, description: e.target.value })
+          }
           className="h-20"
           placeholder="ADD_DESCRIPTION..."
         />
