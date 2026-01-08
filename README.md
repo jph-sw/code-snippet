@@ -61,3 +61,13 @@ Den groben Aufbau habe ich selber programmiert, z.B. die Komponentenstruktur und
 _Es folgten mehrere Iterationen, um das Design zu verfeinern._
 
 </details>
+
+Die Codequalität ist insgesamt sehr gut. Der Code ist sauber strukturiert und gut lesbar. Einige kleinere Anpassungen habe ich vorgenommen, z.B. zu viele Verwendungen von `useEffect` in React-Komponenten reduziert und stattdessen lokale Zustände verwendet.
+
+Dieses Prompt habe ich zum Abschluss verwendet:
+
+> The application is now complete. Please remove any unnecessary code, improve code quality where possible, and ensure consistency in coding style across the entire codebase. Focus on readability, maintainability, and performance optimizations. Provide the final cleaned-up code for the entire project. You are a senior typescript/react developer. Use bleeding edge practices.
+
+### **Fazit**
+
+Insgesamt bin ich sehr zufrieden mit dem Ergebnis. Die Anwendung erfüllt alle Anforderungen und bietet eine gute Benutzererfahrung. Die Nutzung von KI-Tools wie Gemini und Claude Code hat den Entwicklungsprozess erheblich beschleunigt und mir geholfen, qualitativ hochwertigen Code zu schreiben.
